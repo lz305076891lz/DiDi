@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {List, InputItem} from 'antd-mobile'
+import {List, InputItem, NavBar} from 'antd-mobile'
+
 
 import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
 
@@ -19,15 +20,10 @@ class Chat extends React.Component{
     }
   }
 
-  componentDidMount(){
-
-  }
-
   handleSubmit(){
     const from = this.props.user._id
     const to = this.props.match.params.user
     const msg = this.state.text
-    console.log({from,to,msg})
     this.props.sendMsg({from,to,msg})
     this.setState({
       text:''
@@ -35,10 +31,37 @@ class Chat extends React.Component{
   }
 
   render(){
+
     const {chatmsg} = this.props.chat
+    const {user} = this.props.match.params
+
+    const Item = List.Item
+
     return(
-      <div>
-        { chatmsg?chatmsg.map( v=>{ return(<p key={v._id + new Date()}>{v.content}</p>)}):"chatmsg is not loaded yet" }
+      <div id = 'chat-page'>
+
+        <NavBar mode ='dark'>
+          {this.props.match.params.user}
+        </NavBar>
+
+        {chatmsg?(chatmsg.map( v=>{
+            return v.from==user?(
+              <List key={Math.random()}>
+                <Item 
+                  thumb={''}
+                  >{v.content}</Item>
+              </List>
+            ):(
+              <List key={Math.random()}>
+                <Item 
+                  extra={'avatar'}
+                  className='chat-me'>{v.content}</Item>
+              </List>
+            ) 
+        })):"Loading"
+
+        }
+
         <div className='stick-footer'>
           <List>
             <InputItem
