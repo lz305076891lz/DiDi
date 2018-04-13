@@ -5,52 +5,7 @@ import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {login} from '../../redux/user.redux'
 import imoocFrom from '../../component/imooc-form/imooc-form.js'
-// function hello(){
-// 	console.log('hello imooc I love React')
-// }
 
-// function WrapperHello(fn){
-// 	return function(){
-// 		console.log('before say hello')
-// 		fn()
-// 		console.log('after say hello')
-// 	}
-// }
-// hello = WrapperHello(hello)
-// hello()
-
-// 属性代理
-// function WrapperHello(Comp){
-
-// 	class WrapComp extends Comp{
-// 			componentDidMount(){
-// 				console.log('高阶组件新增的生命周期，加载完成')
-// 			}
-// 			render(){
-// 				return <Comp></Comp>
-// 			}
-// 	}
-	// class WrapComp extends React.Component{
-
-	// 	render(){
-	// 		return (<div>
-	// 			<p>这是HOC高阶组件特有的元素</p>
-	// 			<Comp name='text' {...this.props}></Comp>
-	// 		</div>)
-	// 	}
-	// }
-// 	return WrapComp
-// }
-
-
-
-
-// @WrapperHello
-// class Hello extends React.Component{
-// 	render(){
-// 		return <h2>hello imooc I love React&Rdux</h2>
-// 	}
-// }
 
 
 @connect(
@@ -71,8 +26,7 @@ class Login extends React.Component{
 		this.props.login(this.props.state)
 	}
 	render(){
-		console.log('here is login')
-		console.log(this.props)
+		
 		return (
 			<div>
 				{(this.props.redirectTo&&this.props.redirectTo!='/login')? <Redirect to={this.props.redirectTo} />:null}

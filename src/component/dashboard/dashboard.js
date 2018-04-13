@@ -6,18 +6,22 @@ import NavLinkBar from '../navlink/navlink'
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
 import User from '../../component/user/user'
+import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
+
 
 function Msg(){
 	return <h2>消息列表页面</h2>
 }
 
 @connect(
-	state=>state
+	state=>state,
+	{getMsgList,sendMsg,recvMsg}
 )
 class Dashboard extends React.Component{
-	constructor(props){
-		super(props)
 
+	componentDidMount(){
+		this.props.getMsgList()
+		this.props.recvMsg()
 	}
 
 	render(){
@@ -30,7 +34,8 @@ class Dashboard extends React.Component{
 				icon:'boss',
 				title:'牛人列表',
 				component:Boss,
-				hide:user.type=='genius'
+				// hide:user.type=='genius'
+				hide:false
 			},
 			{
 				path:'/genius',
@@ -38,7 +43,8 @@ class Dashboard extends React.Component{
 				icon:'job',
 				title:'BOSS列表',
 				component:Genius,
-				hide:user.type=='boss'
+				// hide:user.type=='boss'
+				hide:false				
 			},
 			{
 				path:'/msg',

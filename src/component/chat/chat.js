@@ -20,8 +20,7 @@ class Chat extends React.Component{
   }
 
   componentDidMount(){
-    this.props.getMsgList()
-    this.props.recvMsg()
+
   }
 
   handleSubmit(){
@@ -39,7 +38,7 @@ class Chat extends React.Component{
     const {chatmsg} = this.props.chat
     return(
       <div>
-        { chatmsg?chatmsg.map( v=>{ return(<p key={v._id}>{v.content}</p>)}):"chatmsg is not loaded yet" }
+        { chatmsg?chatmsg.map( v=>{ return(<p key={v._id + new Date()}>{v.content}</p>)}):"chatmsg is not loaded yet" }
         <div className='stick-footer'>
           <List>
             <InputItem
