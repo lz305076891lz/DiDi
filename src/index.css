@@ -29,6 +29,7 @@
 .stick-footer{
 	z-index: 10;
 	position:fixed;;
-	bottom: 1%;
-	right:1%;
+	bottom: 0;
+	width:100%;
 }
+

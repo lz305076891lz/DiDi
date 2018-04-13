@@ -48,7 +48,7 @@ class Chat extends React.Component{
               this.setState({'text':v})
             }}
             extra={<span onClick={()=>this.handleSubmit()}>enter</span>}
-            >infomation</InputItem>
+            ></InputItem>
           </List>
         </div>
       </div>
